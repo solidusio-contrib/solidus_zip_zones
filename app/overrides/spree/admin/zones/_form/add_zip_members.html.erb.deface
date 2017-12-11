@@ -1,0 +1,3 @@
+<!-- insert_after "erb[loud]:contains('country_members')" -->
+
+<%= render partial: 'spree/admin/zones/zip_members', locals: { zone_form: zone_form } %>
