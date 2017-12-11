@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/nebulab/solidus_zip_zones.svg?branch=master)](https://travis-ci.org/nebulab/solidus_zip_zones)
+
 SolidusZipZones
 ===============
 
