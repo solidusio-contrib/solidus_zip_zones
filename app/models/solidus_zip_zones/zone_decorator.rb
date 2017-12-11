@@ -25,6 +25,30 @@ module SolidusZipZones
           none
         end
       end
+
+      if SolidusSupport.solidus_gem_version < Gem::Version.new('2.4')
+        class << base
+          prepend ClassMethodMatch
+        end
+      end
+    end
+
+    module ClassMethodMatch
+      def match(address)
+        Spree::Deprecation.warn("Spree::Zone.match is deprecated. Please use Spree::Zone.for_address instead.", caller)
+
+        return unless address && (matches =
+                                    with_member_ids(address.state_id, address.country_id, address.zipcode).
+                                    order(:zone_members_count, :created_at, :id).
+                                    references(:zones))
+
+        ['zip', 'state', 'country'].each do |zone_kind|
+          if match = matches.detect { |zone| zone_kind == zone.kind }
+            return match
+          end
+        end
+        matches.first
+      end
     end
 
     def kind
