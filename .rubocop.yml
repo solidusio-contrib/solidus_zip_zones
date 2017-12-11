@@ -6,6 +6,12 @@ AllCops:
     - 'vendor/bundle/**/*'
   TargetRubyVersion: 2.1
 
+Metrics/BlockLength:
+  Exclude:
+    - lib/solidus_zip_zones/factories.rb
+    - spec/**/*
+    - solidus_zip_zones.gemspec
+
 # Sometimes I believe this reads better
 # This also causes spacing issues on multi-line fixes
 Style/BracesAroundHashParameters:

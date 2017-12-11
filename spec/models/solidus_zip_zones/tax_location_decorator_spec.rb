@@ -78,7 +78,7 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
     end
 
     context 'with a zip present' do
-      let(:args) { { zipcode: zipcode  } }
+      let(:args) { { zipcode: zipcode } }
 
       it { is_expected.to be false }
     end

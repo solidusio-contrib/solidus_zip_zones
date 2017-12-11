@@ -4,14 +4,13 @@ require 'solidus_zip_zones/version'
 
 Gem::Specification.new do |s|
   s.name        = 'solidus_zip_zones'
+  s.author      = 'Daniele Palombo'
+  s.email       = 'danielepalombo@nebulab.it'
+  s.homepage    = 'http://github.com/solidusio-contrib/solidus_zip_zones'
   s.version     = SolidusZipZones::VERSION
   s.summary     = 'Solidus zip zones'
   s.description = 'Create zone zip code based'
   s.license     = 'BSD-3-Clause'
-
-  s.author   = 'Daniele Palombo'
-  s.email    = 'danielepalombo@nebulab.it'
-  s.homepage  = 'http://github.com/solidusio-contrib/solidus_zip_zones'
 
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['test/**/*']
