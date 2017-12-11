@@ -1,8 +1,25 @@
-sudo: false
+dist: trusty
+sudo: required
 cache: bundler
 language: ruby
-bundler_args: --quiet
-script:
-  - bundle exec rake
+services:
+  - postgresql
+  - mysql
 rvm:
-  - 2.1.5
+  - 2.4.1
+before_script:
+  - mysql -e 'GRANT ALL ON *.* TO travis@localhost;'
+env:
+  matrix:
+    - SOLIDUS_BRANCH=v2.0 DB=postgres
+    - SOLIDUS_BRANCH=v2.1 DB=postgres
+    - SOLIDUS_BRANCH=v2.2 DB=postgres
+    - SOLIDUS_BRANCH=v2.3 DB=postgres
+    - SOLIDUS_BRANCH=v2.4 DB=postgres
+    - SOLIDUS_BRANCH=master DB=postgres
+    - SOLIDUS_BRANCH=v2.0 DB=mysql
+    - SOLIDUS_BRANCH=v2.1 DB=mysql
+    - SOLIDUS_BRANCH=v2.2 DB=mysql
+    - SOLIDUS_BRANCH=v2.3 DB=mysql
+    - SOLIDUS_BRANCH=v2.4 DB=mysql
+    - SOLIDUS_BRANCH=master DB=mysql
