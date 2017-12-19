@@ -19,12 +19,12 @@ $(function(){
     view.render()
   } else {
     $('#country_based, #state_based').click(function(){
-      $('#zip_members #zone_zipcodes').prop('disabled', true)
+      $('#zip_members #zone_zip_code_ids').prop('disabled', true)
       $('#zip_members').hide()
     })
 
-    $('#zip_based').click(function(){
-      $('#zip_members #zone_zipcodes').prop('disabled', false)
+    $('#zip_code_based').click(function(){
+      $('#zip_members #zone_zip_code_ids').prop('disabled', false)
       $('#zip_members').show()
 
       $('#country_members :input, #state_members :input').each(function(){
@@ -34,7 +34,7 @@ $(function(){
     })
 
     if($('#zone_zipcodes').val() != ''){
-      $('#zip_based').click()
+      $('#zip_code_based').click()
     } else {
       $('#zip_members').hide()
     }
