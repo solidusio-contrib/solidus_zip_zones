@@ -33,7 +33,7 @@ $(function(){
       $('#country_members, #state_members').hide()
     })
 
-    if($('#zone_zipcodes').val() != ''){
+    if($('#zip_code_based[data-is-zip-based=true]').length > 0){
       $('#zip_code_based').click()
     } else {
       $('#zip_members').hide()

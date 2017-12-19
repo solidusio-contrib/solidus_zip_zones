@@ -1,6 +1,6 @@
 <!-- insert_bottom '[data-hook=type] ul' -->
 
 <li>
-  <%= zone_form.radio_button('kind', 'zip', { id: 'zip_based' }) %>
+  <%= zone_form.radio_button('kind', 'zip_code', { id: 'zip_code_based', data: { is_zip_based: zone_form.object.kind == 'zip_code' } }) %>
   <%= label_tag :zip_based, t('spree.zip_based') %>
 </li>
