@@ -1,8 +1,8 @@
 module SolidusZipZones
   module ZoneDecorator
     def self.prepended(base)
-      base.scope :with_member_ids, ->(state_ids, country_ids, zipcode) do
-        if !state_ids.present? && !country_ids.present? && !zipcode.present?
+      base.scope :with_member_ids, ->(state_ids, country_ids, zipcode_ids) do
+        if !state_ids.present? && !country_ids.present? && !zipcode_ids.present?
           none
         else
           spree_zone_members_table = Spree::ZoneMember.arel_table
@@ -12,9 +12,12 @@ module SolidusZipZones
           matching_country =
             spree_zone_members_table[:zoneable_type].eq("Spree::Country").
             and(spree_zone_members_table[:zoneable_id].in(country_ids))
-          spree_zones_table = Spree::Zone.arel_table
-          matching_zipcode = spree_zones_table[:zipcodes].matches("%#{zipcode}%")
-          left_joins(:zone_members).where(matching_zipcode.or(matching_state.or(matching_country))).distinct
+          matching_zip_code =
+            spree_zone_members_table[:zoneable_type].eq("Spree::ZipCode").
+            and(spree_zone_members_table[:zoneable_id].in(zipcode_ids))
+
+          matcher = matching_zip_code.or(matching_state.or(matching_country))
+          joins(:zone_members).where(matcher).distinct
         end
       end
 
