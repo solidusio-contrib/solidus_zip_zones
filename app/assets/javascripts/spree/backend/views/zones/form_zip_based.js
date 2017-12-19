@@ -8,8 +8,8 @@ $(function(){
       render: function() {
         var kind = this.$('[name="zone[kind]"]:checked').val() || 'state';
 
-        $('#zip_members').toggleClass('hidden', kind !== 'zip');
-        $('#zip_members :input').prop('disabled', kind !== 'zip');
+        $('#zip_members').toggleClass('hidden', kind !== 'zip_code');
+        $('#zip_members :input').prop('disabled', kind !== 'zip_code');
       }
     })
 
