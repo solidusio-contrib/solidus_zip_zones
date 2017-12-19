@@ -52,12 +52,8 @@ module SolidusZipZones
         end
         matches.first
       end
-    end
 
-    def kind
-      return 'zip' if zipcodes.present?
 
-      super
     end
 
     Spree::Zone.prepend self
