@@ -37,14 +37,22 @@ module SolidusZipZones
     end
 
     module ClassMethodMatch
+      def with_shared_members(zone)
+        return none unless zone
 
+        states_and_state_country_ids = zone.states.pluck(:id, :country_id).to_a
+        state_ids = states_and_state_country_ids.map(&:first)
+        state_country_ids = states_and_state_country_ids.map(&:second)
+        country_ids = zone.countries.pluck(:id).to_a
 
+        with_member_ids(state_ids, country_ids + state_country_ids, nil).distinct
       end
 
       def match(address)
         Spree::Deprecation.warn("Spree::Zone.match is deprecated. Please use Spree::Zone.for_address instead.", caller)
 
         for_address(address).first
+      end
     end
 
     Spree::Zone.prepend self
