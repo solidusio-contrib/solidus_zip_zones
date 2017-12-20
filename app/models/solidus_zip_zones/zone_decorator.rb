@@ -1,6 +1,12 @@
 module SolidusZipZones
   module ZoneDecorator
     def self.prepended(base)
+      base.with_options through: :zone_members, source: :zoneable do
+        has_many :countries, source_type: "Spree::Country"
+        has_many :states, source_type: "Spree::State"
+        has_many :zip_codes, source_type: "Spree::ZipCode"
+      end
+
       base.scope :with_member_ids, ->(state_ids, country_ids, zipcode_ids) do
         if !state_ids.present? && !country_ids.present? && !zipcode_ids.present?
           none
