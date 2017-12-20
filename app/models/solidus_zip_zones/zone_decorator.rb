@@ -57,7 +57,20 @@ module SolidusZipZones
       def match(address)
         Spree::Deprecation.warn("Spree::Zone.match is deprecated. Please use Spree::Zone.for_address instead.", caller)
 
-        for_address(address).first
+        # This code can't be replaced with for_address because for_address
+        # does not sort the member in order zip_code, state, country
+        return unless address && (matches =
+                                    for_address(address).
+                                    order(:zone_members_count, :created_at, :id).
+                                    references(:zones))
+
+        ['zip_code', 'state', 'country'].each do |zone_kind|
+          if match = matches.detect { |zone| zone_kind == zone.kind }
+            return match
+          end
+        end
+
+        matches.first
       end
     end
 

@@ -130,9 +130,16 @@ RSpec.describe SolidusZipZones::ZoneDecorator, type: :model do
       end
 
       context "when there are three qualified zones with different member types" do
-        let!(:zip_zone)   { create(:zone, name: 'ZipZone', zipcodes: '12345,12346') }
-
+        let!(:zip_zone)  { create(:zone, zip_codes: zip_codes) }
         let(:state_zone) { create(:zone, name: 'StateZone') }
+
+        let(:zip_codes) do
+          [
+            create(:zip_code, state_code: "AL", name: '12345'),
+            create(:zip_code, state_code: "AL", name: '12346')
+          ]
+        end
+
         let(:address) do
           create(:address,
                  country: country,
