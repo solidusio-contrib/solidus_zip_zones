@@ -29,12 +29,12 @@ module SolidusZipZones
 
       base.scope :for_address, ->(address) do
         if address
-          with_member_ids(address.state_id, address.country_id, address.zipcode)
+          zipcode = Spree::ZipCode.find_by name: address.zipcode
+          with_member_ids(address.state_id, address.country_id, zipcode.try(:id))
         else
           none
         end
       end
-
       if SolidusSupport.solidus_gem_version < Gem::Version.new('2.4')
         class << base
           prepend ClassMethodMatch
