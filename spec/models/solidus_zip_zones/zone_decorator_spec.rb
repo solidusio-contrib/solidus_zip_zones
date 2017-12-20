@@ -3,15 +3,23 @@ require 'spec_helper'
 RSpec.describe SolidusZipZones::ZoneDecorator, type: :model do
   describe 'for_address' do
     let(:new_york_address) { create(:address, state_code: "NY", zipcode: '11203') }
-    let(:alabama_address) { create(:address) }
-    let(:canada_address) { create(:address, country_iso_code: "CA") }
+    let(:alabama_address)  { create(:address) }
+    let(:canada_address)   { create(:address, country_iso_code: "CA") }
+    let(:nyc_zip_codes) do
+      [
+        create(:zip_code, state_code: "NY", name: '11203'),
+        create(:zip_code, state_code: "NY", name: '11204'),
+        create(:zip_code, state_code: "NY", name: '11205'),
+        create(:zip_code, state_code: "NY", name: '11206')
+      ]
+    end
 
     let!(:new_york_zone) { create(:zone, states: [new_york_address.state]) }
     let!(:alabama_zone) { create(:zone, states: [alabama_address.state]) }
     let!(:united_states_zone) { create(:zone, countries: [new_york_address.country]) }
     let!(:canada_zone) { create(:zone, countries: [canada_address.country]) }
     let!(:north_america_zone) { create(:zone, countries: [canada_address.country, new_york_address.country]) }
-    let!(:nyc_zip_zone) { create(:zone, zipcodes: "11203,11204,11205,11206") }
+    let!(:nyc_zip_zone) { create(:zone, zip_codes: nyc_zip_codes) }
     subject { Spree::Zone.for_address(address) }
 
     context 'when there is no address' do
