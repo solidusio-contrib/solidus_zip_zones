@@ -40,13 +40,13 @@ require 'solidus_zip_zones/factories'
 
 ## License
 
-SolidusPageObjects is copyright © 2016 [Nebulab](http://nebulab.it/). It is free software, and may be redistributed under the terms specified in the [license].
+SolidusZipZones is copyright © 2019 [Nebulab](http://nebulab.it/). It is free software, and may be redistributed under the terms specified in the [license].
 
 ## About
 
 ![Nebulab](http://nebulab.it/assets/images/public/logo.svg)
 
-SolidusPageObjects is funded and maintained by the [Nebulab](http://nebulab.it/) team.
+SolidusZipZones is funded and maintained by the [Nebulab](http://nebulab.it/) team.
 
 We firmly believe in the power of open-source. [Contact us](http://nebulab.it/contact-us/) if you like our work and you need help with your project design or development.
 
