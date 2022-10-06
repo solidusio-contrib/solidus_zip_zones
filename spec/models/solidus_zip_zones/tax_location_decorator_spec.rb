@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe SolidusZipZones::TaxLocationDecorator do
-  subject { Spree::Tax::TaxLocation.new }
+  subject(:new_tax_location) { Spree::Tax::TaxLocation.new }
 
   let(:country) { build_stubbed(:country) }
   let(:state) { build_stubbed(:state) }
@@ -12,8 +12,8 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
 
   describe "default values" do
     it "has a nil state and country id" do
-      expect(subject.state_id).to eq(nil)
-      expect(subject.country_id).to eq(nil)
+      expect(new_tax_location.state_id).to eq(nil)
+      expect(new_tax_location.country_id).to eq(nil)
     end
   end
 
@@ -21,26 +21,26 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
     let(:other) { Spree::Tax::TaxLocation.new(state: nil, country: nil) }
 
     it 'compares the values of state id and country id and does not care about object identity' do
-      expect(subject).to eq(other)
+      expect(new_tax_location).to eq(other)
     end
 
     context "with different zip code" do
       let(:other) { Spree::Tax::TaxLocation.new(state: nil, country: nil, zipcode: '67890') }
 
       it "distinct by zipcode" do
-        expect(subject).not_to eq(other)
+        expect(new_tax_location).not_to eq(other)
       end
     end
   end
 
   describe "initialization" do
-    subject { Spree::Tax::TaxLocation.new(args) }
+    subject(:new_tax_location) { Spree::Tax::TaxLocation.new(args) }
 
     context 'with a country object' do
       let(:args) { { country: country } }
 
       it "will yield a location with that country's id" do
-        expect(subject.country_id).to eq(country.id)
+        expect(new_tax_location.country_id).to eq(country.id)
       end
     end
   end

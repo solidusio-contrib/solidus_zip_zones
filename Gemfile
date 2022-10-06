@@ -4,11 +4,11 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
-solidus_git, solidus_frontend_git = if (branch == 'master') || (branch >= 'v3.2')
-                                      %w[solidusio/solidus solidusio/solidus_frontend]
-                                    else
-                                      %w[solidusio/solidus] * 2
-                                    end
+solidus_git, _solidus_frontend_git = if (branch == 'master') || (branch >= 'v3.2')
+                                       %w[solidusio/solidus solidusio/solidus_frontend]
+                                     else
+                                       %w[solidusio/solidus] * 2
+                                     end
 
 gem "solidus_api", github: solidus_git, branch: branch
 gem "solidus_backend", github: solidus_git, branch: branch
