@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module SolidusZipZones
   module ZoneDecorator
     def self.prepended(base)
       base.scope :with_member_ids, ->(state_ids, country_ids, zipcode) do
-        if !state_ids.present? && !country_ids.present? && !zipcode.present?
+        if state_ids.blank? && country_ids.blank? && zipcode.blank?
           none
         else
           spree_zone_members_table = Spree::ZoneMember.arel_table

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -8,9 +10,9 @@ solidus_git, solidus_frontend_git = if (branch == 'master') || (branch >= 'v3.2'
                                       %w[solidusio/solidus] * 2
                                     end
 
-gem "solidus_core", github: solidus_git, branch: branch
-gem "solidus_backend", github: solidus_git, branch: branch
 gem "solidus_api", github: solidus_git, branch: branch
+gem "solidus_backend", github: solidus_git, branch: branch
+gem "solidus_core", github: solidus_git, branch: branch
 gem "solidus_sample", github: solidus_git, branch: branch
 
 # Needed to help Bundler figure out how to resolve dependencies,

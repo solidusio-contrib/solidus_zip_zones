@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SolidusZipZones
   module TaxLocationDecorator
     def self.prepended(base)

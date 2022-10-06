@@ -1,5 +1,6 @@
-# encoding: UTF-8
-$:.push File.expand_path('../lib', __FILE__)
+# frozen_string_literal: true
+
+$:.push File.expand_path('lib', __dir__)
 require 'solidus_zip_zones/version'
 
 Gem::Specification.new do |s|
@@ -19,21 +20,21 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails'
 
-  s.add_runtime_dependency 'solidus_core',    ['>= 1.0', '< 4.0']
   s.add_runtime_dependency 'solidus_backend', ['>= 1.0', '< 4.0']
+  s.add_runtime_dependency 'solidus_core',    ['>= 1.0', '< 4.0']
   s.add_dependency 'solidus_support', '~> 0.5'
   s.add_runtime_dependency 'deface', '~> 1.0'
 
   s.add_development_dependency 'capybara'
-  s.add_development_dependency 'poltergeist'
-  s.add_development_dependency 'pry'
   s.add_development_dependency 'coffee-rails'
-  s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'database_cleaner'
   s.add_development_dependency 'factory_bot'
   s.add_development_dependency 'ffaker'
+  s.add_development_dependency 'poltergeist'
+  s.add_development_dependency 'pry'
   s.add_development_dependency 'rspec-rails'
+  s.add_development_dependency 'sass-rails'
   s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'sqlite3'
   s.add_development_dependency 'solidus_dev_support', '~> 2.5'
+  s.add_development_dependency 'sqlite3'
 end

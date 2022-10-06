@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 RSpec.describe SolidusZipZones::TaxLocationDecorator do
+  subject { Spree::Tax::TaxLocation.new }
+
   let(:country) { build_stubbed(:country) }
   let(:state) { build_stubbed(:state) }
   let(:zipcode) { '12345' }
-
-  subject { Spree::Tax::TaxLocation.new }
 
   it { is_expected.to respond_to(:state_id) }
   it { is_expected.to respond_to(:country_id) }
@@ -28,7 +28,7 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
       let(:other) { Spree::Tax::TaxLocation.new(state: nil, country: nil, zipcode: '67890') }
 
       it "distinct by zipcode" do
-        expect(subject).to_not eq(other)
+        expect(subject).not_to eq(other)
       end
     end
   end
@@ -46,8 +46,9 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
   end
 
   describe "#country" do
-    let(:country) { create(:country) }
     subject { Spree::Tax::TaxLocation.new(args).country }
+
+    let(:country) { create(:country) }
 
     context 'with a country object' do
       let(:args) { { country: country } }

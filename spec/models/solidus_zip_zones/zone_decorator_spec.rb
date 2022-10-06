@@ -2,6 +2,8 @@ require 'spec_helper'
 
 RSpec.describe SolidusZipZones::ZoneDecorator, type: :model do
   describe 'for_address' do
+    subject { Spree::Zone.for_address(address) }
+
     let(:new_york_address) { create(:address, state_code: "NY", zipcode: '11203') }
     let(:alabama_address) { create(:address) }
     let(:canada_address) { create(:address, country_iso_code: "CA") }
@@ -12,10 +14,10 @@ RSpec.describe SolidusZipZones::ZoneDecorator, type: :model do
     let!(:canada_zone) { create(:zone, countries: [canada_address.country]) }
     let!(:north_america_zone) { create(:zone, countries: [canada_address.country, new_york_address.country]) }
     let!(:nyc_zip_zone) { create(:zone, zipcodes: "11203,11204,11205,11206") }
-    subject { Spree::Zone.for_address(address) }
 
     context 'when there is no address' do
       let(:address) { nil }
+
       it 'returns an empty relation' do
         expect(subject).to eq([])
       end
@@ -54,7 +56,7 @@ RSpec.describe SolidusZipZones::ZoneDecorator, type: :model do
       let(:address) { new_york_address }
 
       it 'does not match the NYC zip zone' do
-        expect(subject).to_not include(nyc_zip_zone)
+        expect(subject).not_to include(nyc_zip_zone)
       end
     end
   end
