@@ -8,8 +8,8 @@ $(function(){
       render: function() {
         var kind = this.$('[name="zone[kind]"]:checked').val() || 'state';
 
-        $('#zip_members').toggleClass('hidden', kind !== 'zip');
-        $('#zip_members :input').prop('disabled', kind !== 'zip');
+        $('#zip_members').toggleClass('hidden', kind !== 'zip_code');
+        $('#zip_members :input').prop('disabled', kind !== 'zip_code');
       }
     })
 
@@ -19,12 +19,12 @@ $(function(){
     view.render()
   } else {
     $('#country_based, #state_based').click(function(){
-      $('#zip_members #zone_zipcodes').prop('disabled', true)
+      $('#zip_members #zone_zip_code_ids').prop('disabled', true)
       $('#zip_members').hide()
     })
 
-    $('#zip_based').click(function(){
-      $('#zip_members #zone_zipcodes').prop('disabled', false)
+    $('#zip_code_based').click(function(){
+      $('#zip_members #zone_zip_code_ids').prop('disabled', false)
       $('#zip_members').show()
 
       $('#country_members :input, #state_members :input').each(function(){
@@ -33,8 +33,8 @@ $(function(){
       $('#country_members, #state_members').hide()
     })
 
-    if($('#zone_zipcodes').val() != ''){
-      $('#zip_based').click()
+    if($('#zip_code_based[data-is-zip-based=true]').length > 0){
+      $('#zip_code_based').click()
     } else {
       $('#zip_members').hide()
     }

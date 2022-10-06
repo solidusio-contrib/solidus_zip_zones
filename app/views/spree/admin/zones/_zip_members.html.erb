@@ -1,11 +1,10 @@
 <div id="zip_members" data-hook="member">
   <fieldset class="no-border-bottom">
-    <legend align="center"><%= Spree.t(:zipcode) %></legend>
+    <legend align="center"><%= plural_resource_name(Spree::ZipCode) %></legend>
 
-    <%= zone_form.field_container :zipcodes do %>
-      <%= zone_form.label :zipcodes,Spree.t(:zipcode) %><br>
-      <%= zone_form.hidden_field :zipcodes, value: '', id: 'hidden_zone_zipcodes' %>
-      <%= zone_form.text_field :zipcodes, class: "select2-taggable fullwidth" %>
+    <%= zone_form.field_container :zip_codes do %>
+      <%= zone_form.label :zip_code_ids, plural_resource_name(Spree::ZipCode) %><br>
+      <%= zone_form.collection_select :zip_code_ids, @zip_codes, :id, :name, {}, { multiple: true, class: "select2 fullwidth" } %>
     <% end %>
   </fieldset>
 </div>
