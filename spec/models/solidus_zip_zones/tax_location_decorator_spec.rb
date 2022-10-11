@@ -34,7 +34,7 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
   end
 
   describe "initialization" do
-    subject(:new_tax_location) { Spree::Tax::TaxLocation.new(args) }
+    subject(:new_tax_location) { Spree::Tax::TaxLocation.new(**args) }
 
     context 'with a country object' do
       let(:args) { { country: country } }
@@ -46,7 +46,7 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
   end
 
   describe "#country" do
-    subject { Spree::Tax::TaxLocation.new(args).country }
+    subject { Spree::Tax::TaxLocation.new(**args).country }
 
     let(:country) { create(:country) }
 
@@ -64,7 +64,7 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
   end
 
   describe "#empty?" do
-    subject { Spree::Tax::TaxLocation.new(args).empty? }
+    subject { Spree::Tax::TaxLocation.new(**args).empty? }
 
     context 'with a country present' do
       let(:args) { { country: country } }
