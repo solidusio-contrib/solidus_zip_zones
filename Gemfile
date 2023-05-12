@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-branch = ENV.fetch('SOLIDUS_BRANCH', 'master')
+branch = ENV.fetch('SOLIDUS_BRANCH', 'main')
 gem 'solidus', github: 'solidusio/solidus', branch: branch
 
 # Note1:The solidus_frontend gem has been pulled out since v3.2
@@ -14,8 +14,8 @@ gem 'solidus', github: 'solidusio/solidus', branch: branch
 # in Solidus 4 (https://github.com/solidusio/solidus/pull/4490)
 # Which will be a breaking change if a store uses solidus_frontend
 # but not explicitly included
-gem 'solidus_frontend', github: 'solidusio/solidus_frontend' if branch == 'master'
-gem 'solidus_frontend' if branch >= 'v3.2' # rubocop:disable Bundler/DuplicatedGem
+
+gem 'solidus_frontend'
 
 # Needed to help Bundler figure out how to resolve dependencies,
 # otherwise it takes forever to resolve them.
