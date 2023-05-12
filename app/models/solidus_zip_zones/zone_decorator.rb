@@ -7,7 +7,7 @@ module SolidusZipZones
         if state_ids.blank? && country_ids.blank? && zipcode.blank?
           none
         else
-          if country_ids==233
+          if country_ids == 233
             zipcode = zipcode.split('-').first
           end
           spree_zone_members_table = Spree::ZoneMember.arel_table
