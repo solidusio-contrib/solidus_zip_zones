@@ -60,14 +60,13 @@ RSpec.describe SolidusZipZones::ZoneDecorator, type: :model do
       end
     end
 
-    context 'for Zip+4 in US' do
+    context 'with Zip+4 in US' do
       let(:new_york_plus4_address) { create(:address, state_code: "NY", zipcode: '11203-3006') }
       let(:address) { new_york_plus4_address }
 
       it 'matches the United States zone' do
-        expect(subject).to include(new_york_zone)
+        expect(zone_for_address).to include(new_york_zone)
       end
     end
-
   end
 end

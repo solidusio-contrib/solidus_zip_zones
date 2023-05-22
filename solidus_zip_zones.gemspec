@@ -20,8 +20,8 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails'
 
-  s.add_runtime_dependency 'solidus_backend', ['>= 1.0', '< 4.0']
-  s.add_runtime_dependency 'solidus_core',    ['>= 1.0', '< 4.0']
+  s.add_runtime_dependency 'solidus_backend', ['>= 1.0', '< 5.0']
+  s.add_runtime_dependency 'solidus_core',    ['>= 1.0', '< 5.0']
   s.add_dependency 'solidus_support', '~> 0.5'
   s.add_runtime_dependency 'deface', '~> 1.0'
 
