@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
   s.description = 'Create zone zip code based'
   s.license     = 'BSD-3-Clause'
 
+  s.metadata['changelog_uri'] = 'https://github.com/solidusio-contrib/solidus_zip_zones/releases'
+
   s.required_ruby_version = Gem::Requirement.new('>= 2.5')
 
   s.files = Dir["{app,config,db,lib}/**/*", 'LICENSE', 'Rakefile', 'README.md']
