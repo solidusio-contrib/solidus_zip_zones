@@ -39,7 +39,7 @@ RSpec.describe SolidusZipZones::TaxLocationDecorator do
     context 'with a country object' do
       let(:args) { { country: country } }
 
-      it "will yield a location with that country's id" do
+      it "yields a location with that country's id" do
         expect(new_tax_location.country_id).to eq(country.id)
       end
     end
