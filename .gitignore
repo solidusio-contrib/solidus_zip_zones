@@ -14,3 +14,4 @@ pkg
 *.swp
 spec/dummy
 sandbox/
+spec/examples.txt
